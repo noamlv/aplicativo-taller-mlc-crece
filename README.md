@@ -24,3 +24,5 @@ Sin variables de entorno, la aplicación funciona en modo de demostración y no 
 Las respuestas se registran en `survey_submissions` con el identificador `crece-taller-mlc-interes`. Los datos de contacto se conservan en el contexto privado del envío y no se incluyen en el JSON analítico de respuestas.
 
 Las variables `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` deben configurarse únicamente en el servidor.
+
+La revisión de candidaturas puede apoyarse en la pauta documentada en `CRITERIOS-DE-SELECCION.md`.

@@ -61,17 +61,23 @@ function QuestionControl({
       "aria-invalid": invalid,
       "aria-describedby": describedBy,
       maxLength: question.maxLength,
-      onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const nextValue = question.inputMode === "tel"
-          ? event.target.value.replace(/\D/g, "").slice(0, question.maxLength)
-          : event.target.value;
+      onChange: (
+        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+      ) => {
+        const nextValue =
+          question.inputMode === "tel"
+            ? event.target.value.replace(/\D/g, "").slice(0, question.maxLength)
+            : event.target.value;
         onChange(question.id, nextValue);
       },
     };
     return question.type === "textarea" ? (
       <textarea {...shared} rows={4} />
     ) : (
-      <input {...shared} type={question.inputMode === "email" ? "email" : "text"} />
+      <input
+        {...shared}
+        type={question.inputMode === "email" ? "email" : "text"}
+      />
     );
   }
 
@@ -84,11 +90,15 @@ function QuestionControl({
       aria-describedby={describedBy}
     >
       {question.options?.map((option) => {
-        const selected = isMultiple ? selectedValues.includes(option.value) : value === option.value;
+        const selected = isMultiple
+          ? selectedValues.includes(option.value)
+          : value === option.value;
         const otherValue = answers[`${question.id}__otro`];
         return (
           <div className="option-wrap" key={option.value}>
-            <label className={`option ${isMultiple ? "checkbox-option" : ""} ${selected ? "selected" : ""}`}>
+            <label
+              className={`option ${isMultiple ? "checkbox-option" : ""} ${selected ? "selected" : ""}`}
+            >
               <input
                 type={isMultiple ? "checkbox" : "radio"}
                 name={question.id}
@@ -105,7 +115,9 @@ function QuestionControl({
                   if (option.value === "Prefiero no responder" && !selected) {
                     next = [option.value];
                   } else if (option.value !== "Prefiero no responder") {
-                    next = next.filter((item) => item !== "Prefiero no responder");
+                    next = next.filter(
+                      (item) => item !== "Prefiero no responder",
+                    );
                   }
                   onChange(question.id, next);
                 }}
@@ -120,7 +132,9 @@ function QuestionControl({
                 value={typeof otherValue === "string" ? otherValue : ""}
                 placeholder="Especifique"
                 aria-label={`Especifique la respuesta para ${question.prompt}`}
-                onChange={(event) => onChange(`${question.id}__otro`, event.target.value)}
+                onChange={(event) =>
+                  onChange(`${question.id}__otro`, event.target.value)
+                }
               />
             ) : null}
           </div>
@@ -137,10 +151,14 @@ function Header() {
         <p className="eyebrow">PROYECTO CRECE · CONVOCATORIA</p>
         <h1>Taller de Monitoreo Liderado por la Comunidad</h1>
         <p className="header-lead">
-          Manifestación de interés para líderes y lideresas de organizaciones de base comunitaria.
+          Manifestación de interés para líderes y lideresas de organizaciones de
+          base comunitaria.
         </p>
       </div>
-      <div className="brand-lockup" aria-label="ONUSIDA Perú, Proyecto CRECE y Canadá">
+      <div
+        className="brand-lockup"
+        aria-label="ONUSIDA Perú, Proyecto CRECE y Canadá"
+      >
         <Image
           className="onusida-logo"
           src="/assets/logo-onusida-es-color.png"
@@ -198,7 +216,8 @@ export default function QuestionnaireApp() {
   const answeredCount = overallVisibleQuestions.filter((question) =>
     isQuestionAnswered(question, answers),
   ).length;
-  const progress = Math.round((answeredCount / overallVisibleQuestions.length) * 100) || 0;
+  const progress =
+    Math.round((answeredCount / overallVisibleQuestions.length) * 100) || 0;
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -212,7 +231,9 @@ export default function QuestionnaireApp() {
         };
         if (draft.answers) setAnswers(draft.answers);
         if (typeof draft.sectionIndex === "number") {
-          setSectionIndex(Math.min(draft.sectionIndex, surveyInstrument.sections.length - 1));
+          setSectionIndex(
+            Math.min(draft.sectionIndex, surveyInstrument.sections.length - 1),
+          );
         }
         if (draft.consented) setConsented(true);
       } catch {
@@ -240,17 +261,27 @@ export default function QuestionnaireApp() {
   }
 
   function moveToTop() {
-    requestAnimationFrame(() => topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    requestAnimationFrame(() =>
+      topRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+    );
   }
 
   function continueSection() {
-    const invalid = visibleQuestions.filter((question) => questionError(question, answers));
+    const invalid = visibleQuestions.filter((question) =>
+      questionError(question, answers),
+    );
     if (invalid.length > 0) {
-      setTouched((current) => new Set([...current, ...invalid.map((question) => question.id)]));
-      requestAnimationFrame(() => document.querySelector<HTMLElement>(".question.has-error")?.focus());
+      setTouched(
+        (current) =>
+          new Set([...current, ...invalid.map((question) => question.id)]),
+      );
+      requestAnimationFrame(() =>
+        document.querySelector<HTMLElement>(".question.has-error")?.focus(),
+      );
       return;
     }
-    if (sectionIndex === surveyInstrument.sections.length - 1) setView("review");
+    if (sectionIndex === surveyInstrument.sections.length - 1)
+      setView("review");
     else setSectionIndex((current) => current + 1);
     moveToTop();
   }
@@ -274,13 +305,19 @@ export default function QuestionnaireApp() {
       fileName: "manifestacion-interes-taller-mlc-crece",
       metadata: [
         { label: "Fechas", value: "17 al 21 de noviembre de 2026" },
-        { label: "Modalidad", value: "Dos jornadas virtuales y tres presenciales" },
+        {
+          label: "Modalidad",
+          value: "Dos jornadas virtuales y tres presenciales",
+        },
       ],
       sections: surveyInstrument.sections.map((section) => ({
         title: section.title,
         rows: section.questions
           .filter((question) => isQuestionVisible(question, answers))
-          .map((question) => ({ label: question.prompt, value: answerForDisplay(question, answers) })),
+          .map((question) => ({
+            label: question.prompt,
+            value: answerForDisplay(question, answers),
+          })),
       })),
     });
   }
@@ -311,19 +348,30 @@ export default function QuestionnaireApp() {
           contact,
         }),
       });
-      const payload = (await response.json()) as {
+      const responseText = await response.text();
+      let payload: {
         error?: string;
         preview?: boolean;
         submissionId?: string;
-      };
-      if (!response.ok) throw new Error(payload.error ?? "No se pudo registrar la respuesta.");
+      } = {};
+      try {
+        payload = responseText ? JSON.parse(responseText) : {};
+      } catch {
+        payload = {};
+      }
+      if (!response.ok || !payload.submissionId) {
+        throw new Error("No se pudo registrar la respuesta.");
+      }
       setPreviewSubmission(Boolean(payload.preview));
       setSubmissionId(payload.submissionId ?? null);
       setView("submitted");
       window.localStorage.removeItem(DRAFT_KEY);
       moveToTop();
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : "No se pudo registrar la respuesta.");
+      console.error("Unable to submit MLC workshop application", error);
+      setSubmitError(
+        "No pudimos registrar su respuesta. Sus respuestas siguen en pantalla; intente nuevamente en unos minutos.",
+      );
     } finally {
       setSubmitting(false);
     }
@@ -349,16 +397,28 @@ export default function QuestionnaireApp() {
       {view === "intro" ? (
         <section className="intro-layout" aria-labelledby="intro-title">
           <div className="intro-copy">
-            <p className="section-kicker">Manifestación de interés · 5 a 7 minutos</p>
+            <p className="section-kicker">
+              Manifestación de interés · 5 a 7 minutos
+            </p>
             <h2 id="intro-title">Taller práctico de MLC</h2>
             <p>{surveyInstrument.description}</p>
             <div className="activity-context schedule-card">
               <strong>Fechas y horarios</strong>
-              <span><b>Martes 17:</b> 5:00 a 8:00 p. m. · virtual</span>
-              <span><b>Miércoles 18:</b> 5:00 a 8:00 p. m. · virtual</span>
-              <span><b>Jueves 19:</b> 4:00 a 9:00 p. m. · presencial</span>
-              <span><b>Viernes 20:</b> 4:00 a 9:00 p. m. · presencial</span>
-              <span><b>Sábado 21:</b> 10:00 a. m. a 7:00 p. m. · presencial</span>
+              <span>
+                <b>Martes 17:</b> 5:00 a 8:00 p. m. · virtual
+              </span>
+              <span>
+                <b>Miércoles 18:</b> 5:00 a 8:00 p. m. · virtual
+              </span>
+              <span>
+                <b>Jueves 19:</b> 4:00 a 9:00 p. m. · presencial
+              </span>
+              <span>
+                <b>Viernes 20:</b> 4:00 a 9:00 p. m. · presencial
+              </span>
+              <span>
+                <b>Sábado 21:</b> 10:00 a. m. a 7:00 p. m. · presencial
+              </span>
               <small>Noviembre de 2026</small>
             </div>
           </div>
@@ -366,7 +426,11 @@ export default function QuestionnaireApp() {
             <ShieldCheck aria-hidden="true" />
             <h3>Participación voluntaria</h3>
             <p>
-              Sus respuestas serán utilizadas por ONUSIDA Perú y el proyecto CRECE para organizar el taller y, si las postulaciones superan los 30 cupos, realizar la selección. Se admitirá una persona por OBC. El envío del formulario no confirma una vacante; el equipo comunicará el resultado a cada postulante.
+              Sus respuestas serán utilizadas por ONUSIDA Perú y el proyecto
+              CRECE para organizar el taller y, si las postulaciones superan los
+              30 cupos, realizar la selección. Se admitirá una persona por OBC.
+              El envío del formulario no confirma una vacante; el equipo
+              comunicará el resultado a cada postulante.
             </p>
             <label className="consent-check">
               <input
@@ -394,50 +458,114 @@ export default function QuestionnaireApp() {
       {view === "survey" ? (
         <div className="survey-layout">
           <aside className="stepper" aria-label="Secciones del cuestionario">
-            <div className="progress-copy"><span>Avance</span><strong>{progress}%</strong></div>
-            <div className="progress-track" aria-hidden="true"><span style={{ width: `${progress}%` }} /></div>
+            <div className="progress-copy">
+              <span>Avance</span>
+              <strong>{progress}%</strong>
+            </div>
+            <div className="progress-track" aria-hidden="true">
+              <span style={{ width: `${progress}%` }} />
+            </div>
             <ol>
               {surveyInstrument.sections.map((section, index) => (
-                <li className={index === sectionIndex ? "active" : index < sectionIndex ? "done" : ""} key={section.id}>
-                  <span className="step-number">{index < sectionIndex ? <Check aria-hidden="true" /> : index + 1}</span>
+                <li
+                  className={
+                    index === sectionIndex
+                      ? "active"
+                      : index < sectionIndex
+                        ? "done"
+                        : ""
+                  }
+                  key={section.id}
+                >
+                  <span className="step-number">
+                    {index < sectionIndex ? (
+                      <Check aria-hidden="true" />
+                    ) : (
+                      index + 1
+                    )}
+                  </span>
                   <span>{section.shortTitle}</span>
                 </li>
               ))}
             </ol>
-            <p className="draft-note"><LockKeyhole aria-hidden="true" /> El avance se conserva en este navegador hasta que envíe el formulario.</p>
+            <p className="draft-note">
+              <LockKeyhole aria-hidden="true" /> El avance se conserva en este
+              navegador hasta que envíe el formulario.
+            </p>
           </aside>
 
           <section className="form-panel" aria-labelledby="section-title">
             <div className="form-heading">
-              <p className="section-kicker">Sección {sectionIndex + 1} de {surveyInstrument.sections.length}</p>
+              <p className="section-kicker">
+                Sección {sectionIndex + 1} de {surveyInstrument.sections.length}
+              </p>
               <h2 id="section-title">{currentSection.title}</h2>
               <p>{currentSection.description}</p>
-              <p className="required-note"><span aria-hidden="true">*</span> Pregunta obligatoria</p>
+              <p className="required-note">
+                <span aria-hidden="true">*</span> Pregunta obligatoria
+              </p>
             </div>
             <div className="question-list">
               {visibleQuestions.map((question, index) => {
-                const error = touched.has(question.id) ? questionError(question, answers) : null;
+                const error = touched.has(question.id)
+                  ? questionError(question, answers)
+                  : null;
                 return (
-                  <div className={`question ${error ? "has-error" : ""}`} key={question.id} tabIndex={error ? -1 : undefined}>
+                  <div
+                    className={`question ${error ? "has-error" : ""}`}
+                    key={question.id}
+                    tabIndex={error ? -1 : undefined}
+                  >
                     <div className="question-heading">
                       <span className="question-index">{index + 1}</span>
                       <div>
-                        <label htmlFor={question.type === "text" || question.type === "textarea" ? question.id : undefined}>
-                          {question.prompt} {question.required ? <span className="required-mark">*</span> : null}
+                        <label
+                          htmlFor={
+                            question.type === "text" ||
+                            question.type === "textarea"
+                              ? question.id
+                              : undefined
+                          }
+                        >
+                          {question.prompt}{" "}
+                          {question.required ? (
+                            <span className="required-mark">*</span>
+                          ) : null}
                         </label>
                         {question.helper ? <p>{question.helper}</p> : null}
                       </div>
                     </div>
-                    <QuestionControl question={question} answers={answers} onChange={updateAnswer} invalid={Boolean(error)} />
-                    {error ? <p className="field-error" id={`${question.id}-error`}><AlertCircle aria-hidden="true" /> {error}</p> : null}
+                    <QuestionControl
+                      question={question}
+                      answers={answers}
+                      onChange={updateAnswer}
+                      invalid={Boolean(error)}
+                    />
+                    {error ? (
+                      <p className="field-error" id={`${question.id}-error`}>
+                        <AlertCircle aria-hidden="true" /> {error}
+                      </p>
+                    ) : null}
                   </div>
                 );
               })}
             </div>
             <div className="form-actions">
-              <button className="button secondary" type="button" onClick={previousSection}><ArrowLeft aria-hidden="true" /> Atrás</button>
-              <button className="button primary" type="button" onClick={continueSection}>
-                {sectionIndex === surveyInstrument.sections.length - 1 ? "Revisar respuestas" : "Continuar"}
+              <button
+                className="button secondary"
+                type="button"
+                onClick={previousSection}
+              >
+                <ArrowLeft aria-hidden="true" /> Atrás
+              </button>
+              <button
+                className="button primary"
+                type="button"
+                onClick={continueSection}
+              >
+                {sectionIndex === surveyInstrument.sections.length - 1
+                  ? "Revisar respuestas"
+                  : "Continuar"}
                 <ArrowRight aria-hidden="true" />
               </button>
             </div>
@@ -449,25 +577,69 @@ export default function QuestionnaireApp() {
         <section className="review-panel" aria-labelledby="review-title">
           <div className="review-heading">
             <ClipboardCheck aria-hidden="true" />
-            <div><p className="section-kicker">Último paso</p><h2 id="review-title">Revise sus respuestas</h2><p>Puede volver a cualquier sección antes de enviar el formulario.</p></div>
+            <div>
+              <p className="section-kicker">Último paso</p>
+              <h2 id="review-title">Revise sus respuestas</h2>
+              <p>
+                Puede volver a cualquier sección antes de enviar el formulario.
+              </p>
+            </div>
           </div>
           <div className="review-sections">
             {surveyInstrument.sections.map((section, index) => (
               <section className="review-section" key={section.id}>
-                <div className="review-section-head"><h3>{section.title}</h3><button className="icon-text-button" type="button" onClick={() => editSection(index)}><Pencil aria-hidden="true" /> Editar</button></div>
+                <div className="review-section-head">
+                  <h3>{section.title}</h3>
+                  <button
+                    className="icon-text-button"
+                    type="button"
+                    onClick={() => editSection(index)}
+                  >
+                    <Pencil aria-hidden="true" /> Editar
+                  </button>
+                </div>
                 <dl>
-                  {section.questions.filter((question) => isQuestionVisible(question, answers)).map((question) => (
-                    <div key={question.id}><dt>{question.prompt}</dt><dd>{answerForDisplay(question, answers)}</dd></div>
-                  ))}
+                  {section.questions
+                    .filter((question) => isQuestionVisible(question, answers))
+                    .map((question) => (
+                      <div key={question.id}>
+                        <dt>{question.prompt}</dt>
+                        <dd>{answerForDisplay(question, answers)}</dd>
+                      </div>
+                    ))}
                 </dl>
               </section>
             ))}
           </div>
-          {submitError ? <p className="submit-error"><AlertCircle aria-hidden="true" /> {submitError}</p> : null}
+          {submitError ? (
+            <p className="submit-error">
+              <AlertCircle aria-hidden="true" /> {submitError}
+            </p>
+          ) : null}
           <div className="form-actions">
-            <button className="button secondary" type="button" onClick={() => editSection(surveyInstrument.sections.length - 1)}><ArrowLeft aria-hidden="true" /> Atrás</button>
-            <button className="button secondary" type="button" onClick={downloadPdf}><Download aria-hidden="true" /> Descargar PDF</button>
-            <button className="button primary" type="button" disabled={submitting} onClick={submitSurvey}>{submitting ? "Enviando..." : "Enviar postulación"} <Check aria-hidden="true" /></button>
+            <button
+              className="button secondary"
+              type="button"
+              onClick={() => editSection(surveyInstrument.sections.length - 1)}
+            >
+              <ArrowLeft aria-hidden="true" /> Atrás
+            </button>
+            <button
+              className="button secondary"
+              type="button"
+              onClick={downloadPdf}
+            >
+              <Download aria-hidden="true" /> Descargar PDF
+            </button>
+            <button
+              className="button primary"
+              type="button"
+              disabled={submitting}
+              onClick={submitSurvey}
+            >
+              {submitting ? "Enviando..." : "Enviar postulación"}{" "}
+              <Check aria-hidden="true" />
+            </button>
           </div>
         </section>
       ) : null}
@@ -477,16 +649,42 @@ export default function QuestionnaireApp() {
           <CheckCircle2 aria-hidden="true" />
           <p className="section-kicker">Formulario completado</p>
           <h2 id="success-title">{surveyInstrument.confirmation}</h2>
-          {previewSubmission ? <p className="preview-message">Esta es una versión de demostración. La respuesta no fue enviada a una base de datos.</p> : <p>La información fue registrada correctamente. El equipo comunicará posteriormente el resultado del proceso de selección.</p>}
-          {submissionId ? <small>Referencia: {submissionId.slice(0, 8).toUpperCase()}</small> : null}
+          {previewSubmission ? (
+            <p className="preview-message">
+              Esta es una versión de demostración. La respuesta no fue enviada a
+              una base de datos.
+            </p>
+          ) : (
+            <p>
+              La información fue registrada correctamente. El equipo comunicará
+              posteriormente el resultado del proceso de selección.
+            </p>
+          )}
+          {submissionId ? (
+            <small>Referencia: {submissionId.slice(0, 8).toUpperCase()}</small>
+          ) : null}
           <div className="success-actions">
-            <button className="button secondary" type="button" onClick={resetSurvey}><RotateCcw aria-hidden="true" /> Registrar otra respuesta</button>
-            <a className="button primary" href="https://portal-herramientas-crece.vercel.app/"><Share2 aria-hidden="true" /> Ver herramientas CRECE</a>
+            <button
+              className="button secondary"
+              type="button"
+              onClick={resetSurvey}
+            >
+              <RotateCcw aria-hidden="true" /> Registrar otra respuesta
+            </button>
+            <a
+              className="button primary"
+              href="https://portal-herramientas-crece.vercel.app/"
+            >
+              <Share2 aria-hidden="true" /> Ver herramientas CRECE
+            </a>
           </div>
         </section>
       ) : null}
 
-      <footer className="site-footer"><span>Proyecto CRECE</span><span>Monitoreo y Evaluación</span></footer>
+      <footer className="site-footer">
+        <span>Proyecto CRECE</span>
+        <span>Monitoreo y Evaluación</span>
+      </footer>
     </main>
   );
 }

@@ -1,6 +1,13 @@
 :root {
   color-scheme: light;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   --ink: #2d2730;
   --muted: #676069;
   --paper: #ffffff;
@@ -159,6 +166,11 @@ h3 {
   height: auto;
 }
 
+.attpe-logo {
+  width: 184px;
+  height: auto;
+}
+
 .canada-logo-frame {
   position: relative;
   width: 184px;
@@ -244,6 +256,15 @@ h3 {
   line-height: 1.45;
 }
 
+.call-card {
+  border-left-color: var(--teal);
+  background: var(--green-soft);
+}
+
+.call-card span {
+  line-height: 1.5;
+}
+
 .schedule-card b {
   color: var(--ink);
 }
@@ -274,7 +295,9 @@ h3 {
   background: var(--paper);
   text-align: left;
   cursor: pointer;
-  transition: border-color 150ms ease, background 150ms ease;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
 }
 
 .participant-type:hover {
@@ -606,7 +629,10 @@ h3 {
   font-size: 0.9rem;
   line-height: 1.35;
   cursor: pointer;
-  transition: border-color 150ms ease, background 150ms ease, color 150ms ease;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    color 150ms ease;
 }
 
 .option:hover {
@@ -669,7 +695,9 @@ h3 {
   color: var(--ink);
   background: var(--paper);
   outline: none;
-  transition: border-color 150ms ease, box-shadow 150ms ease;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease;
 }
 
 .text-input::placeholder {
@@ -918,7 +946,10 @@ textarea.text-input {
   border-radius: 6px;
   font-weight: 750;
   cursor: pointer;
-  transition: transform 120ms ease, background 150ms ease, border-color 150ms ease;
+  transition:
+    transform 120ms ease,
+    background 150ms ease,
+    border-color 150ms ease;
   text-decoration: none;
 }
 
@@ -1152,6 +1183,10 @@ textarea.text-input {
     width: 100px;
   }
 
+  .attpe-logo {
+    width: 145px;
+  }
+
   .canada-logo-frame {
     width: 145px;
     height: 49px;
@@ -1256,6 +1291,10 @@ textarea.text-input {
 
   .crece-logo {
     width: 64px;
+  }
+
+  .attpe-logo {
+    width: 82px;
   }
 
   .canada-logo-frame {

@@ -152,12 +152,12 @@ function Header() {
         <h1>Taller de Monitoreo Liderado por la Comunidad</h1>
         <p className="header-lead">
           Manifestación de interés para líderes y lideresas de organizaciones de
-          base comunitaria.
+          base comunitaria de Lima y Callao.
         </p>
       </div>
       <div
         className="brand-lockup"
-        aria-label="ONUSIDA Perú, Proyecto CRECE y Canadá"
+        aria-label="ONUSIDA Perú, Proyecto CRECE, ATTPE y Canadá"
       >
         <Image
           className="onusida-logo"
@@ -174,6 +174,14 @@ function Header() {
           height={218}
           priority
           alt="Proyecto CRECE"
+        />
+        <Image
+          className="attpe-logo"
+          src="/assets/logo-attpe.jpeg"
+          width={1200}
+          height={600}
+          priority
+          alt="Asociación de Travestis, Transexuales y Transgéneros del Perú"
         />
         <div className="canada-logo-frame">
           <Image
@@ -309,6 +317,9 @@ export default function QuestionnaireApp() {
           label: "Modalidad",
           value: "Dos jornadas virtuales y tres presenciales",
         },
+        { label: "Convocatoria", value: "21 al 28 de octubre de 2026" },
+        { label: "Dirigido a", value: "Organizaciones de Lima y Callao" },
+        { label: "Conectividad", value: "Bono para las sesiones virtuales" },
       ],
       sections: surveyInstrument.sections.map((section) => ({
         title: section.title,
@@ -402,6 +413,17 @@ export default function QuestionnaireApp() {
             </p>
             <h2 id="intro-title">Taller práctico de MLC</h2>
             <p>{surveyInstrument.description}</p>
+            <div className="activity-context call-card">
+              <strong>Convocatoria para Lima y Callao</strong>
+              <span>
+                El formulario estará disponible del miércoles 21 al miércoles 28
+                de octubre de 2026.
+              </span>
+              <span>
+                Las personas seleccionadas recibirán un bono de conectividad a
+                internet para participar en las jornadas virtuales.
+              </span>
+            </div>
             <div className="activity-context schedule-card">
               <strong>Fechas y horarios</strong>
               <span>

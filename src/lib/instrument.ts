@@ -7,7 +7,7 @@ const yesNo: SurveyOption[] = [
 
 export const surveyInstrument: SurveyInstrument = {
   id: "crece-taller-mlc-interes",
-  version: "2026-10-v1",
+  version: "2026-10-v2",
   title: "Taller de Monitoreo Liderado por la Comunidad",
   description:
     "Este formulario registra el interés y la disponibilidad de líderes y lideresas de organizaciones de base comunitaria para participar en el taller.",
@@ -32,7 +32,8 @@ export const surveyInstrument: SurveyInstrument = {
           id: "numero_celular",
           type: "text",
           prompt: "Número de celular",
-          helper: "Utilizaremos este número para comunicar el resultado de la selección.",
+          helper:
+            "Utilizaremos este número para comunicar el resultado de la selección.",
           required: true,
           inputMode: "tel",
           maxLength: 9,
@@ -51,7 +52,8 @@ export const surveyInstrument: SurveyInstrument = {
           maxLength: 254,
           placeholder: "nombre@correo.com",
           validate: (value) =>
-            typeof value === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+            typeof value === "string" &&
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
               ? null
               : "Ingrese un correo electrónico válido.",
         },
@@ -71,6 +73,48 @@ export const surveyInstrument: SurveyInstrument = {
           maxLength: 220,
           placeholder: "Escriba el nombre completo de la organización",
         },
+        {
+          id: "territorio_obc",
+          type: "single",
+          prompt: "¿En qué territorio se encuentra su OBC?",
+          required: true,
+          options: [
+            { value: "Lima", label: "Lima" },
+            { value: "Callao", label: "Callao" },
+          ],
+        },
+        {
+          id: "poblaciones_crece",
+          type: "multiple",
+          prompt:
+            "¿Con cuál o cuáles de las siguientes poblaciones del proyecto CRECE se identifica?",
+          helper:
+            "Puede marcar más de una opción o seleccionar «Prefiero no responder».",
+          required: true,
+          options: [
+            { value: "Persona joven", label: "Persona joven" },
+            { value: "Persona trans", label: "Persona trans" },
+            { value: "Persona LGTBIQ+", label: "Persona LGTBIQ+" },
+            { value: "Persona migrante", label: "Persona migrante" },
+            {
+              value: "Persona que vive con VIH",
+              label: "Persona que vive con VIH",
+            },
+            {
+              value: "Persona que realiza o realizó trabajo sexual",
+              label: "Persona que realiza o realizó trabajo sexual",
+            },
+            {
+              value: "Persona aliada de las poblaciones del proyecto",
+              label: "Persona aliada de las poblaciones del proyecto",
+            },
+            { value: "Otro", label: "Otra población", hasTextInput: true },
+            {
+              value: "Prefiero no responder",
+              label: "Prefiero no responder",
+            },
+          ],
+        },
       ],
     },
     {
@@ -83,7 +127,8 @@ export const surveyInstrument: SurveyInstrument = {
         {
           id: "plan_incluye_mlc",
           type: "single",
-          prompt: "¿El plan de trabajo de su OBC incluye acciones de Monitoreo Liderado por la Comunidad (MLC)?",
+          prompt:
+            "¿El plan de trabajo de su OBC incluye acciones de Monitoreo Liderado por la Comunidad (MLC)?",
           required: true,
           options: yesNo,
         },
@@ -95,9 +140,18 @@ export const surveyInstrument: SurveyInstrument = {
           options: yesNo,
         },
         {
+          id: "interes_personal_taller",
+          type: "single",
+          prompt:
+            "¿Tiene interés personal en participar en el taller de Monitoreo Liderado por la Comunidad?",
+          required: true,
+          options: yesNo,
+        },
+        {
           id: "capacitacion_previa",
           type: "single",
-          prompt: "¿Su OBC ha recibido previamente capacitación sobre MLC por parte de otra organización?",
+          prompt:
+            "¿Su OBC ha recibido previamente capacitación sobre MLC por parte de otra organización?",
           required: true,
           options: yesNo,
         },
@@ -110,18 +164,25 @@ export const surveyInstrument: SurveyInstrument = {
           showWhen: (answers) => answers.capacitacion_previa === "Sí",
           options: [
             { value: "Socios en Salud", label: "Socios en Salud" },
-            { value: "Universidad Peruana Cayetano Heredia", label: "Universidad Peruana Cayetano Heredia" },
+            {
+              value: "Universidad Peruana Cayetano Heredia",
+              label: "Universidad Peruana Cayetano Heredia",
+            },
             { value: "Otro", label: "Otra organización", hasTextInput: true },
           ],
         },
         {
           id: "aprendizaje_previo",
           type: "textarea",
-          prompt: "¿Qué contenidos o herramientas de MLC conoce o ha aplicado su OBC?",
+          prompt:
+            "¿Qué contenidos o herramientas de MLC conoce o ha aplicado su OBC?",
           required: false,
           maxLength: 1200,
-          placeholder: "Describa brevemente la experiencia previa de la organización",
-          showWhen: (answers) => answers.capacitacion_previa === "Sí" || answers.plan_incluye_mlc === "Sí",
+          placeholder:
+            "Describa brevemente la experiencia previa de la organización",
+          showWhen: (answers) =>
+            answers.capacitacion_previa === "Sí" ||
+            answers.plan_incluye_mlc === "Sí",
         },
       ],
     },
@@ -135,7 +196,8 @@ export const surveyInstrument: SurveyInstrument = {
         {
           id: "disponibilidad_cinco_jornadas",
           type: "single",
-          prompt: "¿Cuenta con disponibilidad para asistir a las cinco jornadas del taller?",
+          prompt:
+            "¿Cuenta con disponibilidad para asistir a las cinco jornadas del taller?",
           helper: "Revise las fechas y horarios antes de responder.",
           required: true,
           options: yesNo,
@@ -143,7 +205,8 @@ export const surveyInstrument: SurveyInstrument = {
         {
           id: "restriccion_disponibilidad",
           type: "textarea",
-          prompt: "Indique qué jornada no podría atender o qué restricción tendría",
+          prompt:
+            "Indique qué jornada no podría atender o qué restricción tendría",
           required: true,
           maxLength: 800,
           placeholder: "Precise la fecha y la dificultad",
@@ -152,8 +215,10 @@ export const surveyInstrument: SurveyInstrument = {
         {
           id: "plan_accion_seis_meses",
           type: "textarea",
-          prompt: "¿Cuál es el plan de acción de su OBC en materia de MLC para los próximos seis meses?",
-          helper: "Describa las acciones previstas, la población involucrada y el resultado que espera alcanzar.",
+          prompt:
+            "¿Cuál es el plan de acción de su OBC en materia de MLC para los próximos seis meses?",
+          helper:
+            "Describa las acciones previstas, la población involucrada y el resultado que espera alcanzar.",
           required: true,
           maxLength: 2400,
           placeholder: "Describa brevemente el plan de acción",
@@ -161,18 +226,11 @@ export const surveyInstrument: SurveyInstrument = {
         {
           id: "aplicacion_aprendizajes",
           type: "textarea",
-          prompt: "¿Cómo aplicaría o compartiría en su OBC lo aprendido durante el taller?",
+          prompt:
+            "¿Cómo aplicaría o compartiría en su OBC lo aprendido durante el taller?",
           required: true,
           maxLength: 1600,
           placeholder: "Describa una acción concreta de aplicación o réplica",
-        },
-        {
-          id: "ajuste_accesibilidad",
-          type: "textarea",
-          prompt: "¿Requiere algún ajuste de accesibilidad o apoyo para participar?",
-          required: false,
-          maxLength: 800,
-          placeholder: "Indíquelo para que podamos considerarlo",
         },
       ],
     },

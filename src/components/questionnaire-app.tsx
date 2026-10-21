@@ -419,7 +419,7 @@ export default function QuestionnaireApp() {
               Manifestación de interés · 5 a 7 minutos
             </p>
             <h2 id="intro-title">
-              Taller teórico-práctico de MLC con enfoque de género y derechos
+              Taller teórico-práctico con enfoque de género y derechos
             </h2>
             <p>{surveyInstrument.description}</p>
             <div className="activity-context call-card">

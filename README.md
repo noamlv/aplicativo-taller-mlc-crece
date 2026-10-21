@@ -2,7 +2,7 @@
 
 Formulario de manifestación de interés para líderes y lideresas de organizaciones de base comunitaria que deseen participar en el Taller de Monitoreo Liderado por la Comunidad del proyecto CRECE.
 
-La versión `2026-10-v1` registra una candidatura por OBC, experiencia previa, disponibilidad para las cinco jornadas y el plan de aplicación de los aprendizajes. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
+La versión `2026-10-v2` registra una candidatura por OBC, experiencia previa, disponibilidad para las cinco jornadas y el plan de aplicación de los aprendizajes. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
 
 ## Desarrollo local
 
@@ -15,6 +15,8 @@ Sin variables de entorno, la aplicación funciona en modo de demostración y no 
 
 ## Fechas del taller
 
+- Convocatoria: 21 de octubre al 1 de noviembre de 2026, hasta las 11:59 p. m.
+- Comunicación de resultados al correo registrado: hasta el 4 de noviembre de 2026.
 - 17 y 18 de noviembre de 2026: sesiones virtuales.
 - 19, 20 y 21 de noviembre de 2026: sesiones presenciales.
 - Capacidad prevista: 30 participantes, con una persona por OBC.

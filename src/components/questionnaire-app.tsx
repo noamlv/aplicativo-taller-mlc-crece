@@ -317,7 +317,14 @@ export default function QuestionnaireApp() {
           label: "Modalidad",
           value: "Dos jornadas virtuales y tres presenciales",
         },
-        { label: "Convocatoria", value: "21 al 28 de octubre de 2026" },
+        {
+          label: "Convocatoria",
+          value: "21 de octubre al 1 de noviembre de 2026, 11:59 p. m.",
+        },
+        {
+          label: "Resultados",
+          value: "Al correo registrado hasta el 4 de noviembre de 2026",
+        },
         { label: "Dirigido a", value: "Organizaciones de Lima y Callao" },
         { label: "Conectividad", value: "Bono para las sesiones virtuales" },
       ],
@@ -411,13 +418,19 @@ export default function QuestionnaireApp() {
             <p className="section-kicker">
               Manifestación de interés · 5 a 7 minutos
             </p>
-            <h2 id="intro-title">Taller práctico de MLC</h2>
+            <h2 id="intro-title">
+              Taller teórico-práctico de MLC con enfoque de género y derechos
+            </h2>
             <p>{surveyInstrument.description}</p>
             <div className="activity-context call-card">
               <strong>Convocatoria para Lima y Callao</strong>
               <span>
-                El formulario estará disponible del miércoles 21 al miércoles 28
-                de octubre de 2026.
+                El formulario estará disponible del miércoles 21 de octubre al
+                domingo 1 de noviembre de 2026, hasta las 11:59 p. m.
+              </span>
+              <span>
+                Los resultados se comunicarán al correo electrónico registrado
+                hasta el miércoles 4 de noviembre de 2026.
               </span>
               <span>
                 Las personas seleccionadas recibirán un bono de conectividad a
@@ -443,6 +456,32 @@ export default function QuestionnaireApp() {
               </span>
               <small>Noviembre de 2026</small>
             </div>
+            <div className="mlc-definition">
+              <h3>¿Qué es el MLC?</h3>
+              <p>
+                El Monitoreo Liderado por la Comunidad (MLC) es un proceso
+                organizado y continuo en el que las propias comunidades generan
+                y utilizan información para mejorar los servicios, dar
+                seguimiento a las políticas públicas y promover el respeto de
+                sus derechos.
+              </p>
+              <details>
+                <summary>Conocer más sobre el MLC</summary>
+                <p>
+                  Las comunidades deciden qué aspectos revisar, recogen y
+                  analizan las experiencias de las personas e identifican
+                  barreras, desigualdades y avances. Con esta evidencia,
+                  dialogan con las instituciones, proponen mejoras y vigilan el
+                  cumplimiento de las políticas, el uso de los recursos y los
+                  compromisos asumidos. Este taller busca fortalecer las
+                  capacidades de las organizaciones para liderar este proceso,
+                  exigir rendición de cuentas y contribuir a que las decisiones
+                  públicas y los servicios respondan a sus necesidades, con una
+                  participación efectiva, un trato respetuoso y sin
+                  discriminación.
+                </p>
+              </details>
+            </div>
           </div>
           <div className="privacy-panel">
             <ShieldCheck aria-hidden="true" />
@@ -452,7 +491,8 @@ export default function QuestionnaireApp() {
               CRECE para organizar el taller y, si las postulaciones superan los
               30 cupos, realizar la selección. Se admitirá una persona por OBC.
               El envío del formulario no confirma una vacante; el equipo
-              comunicará el resultado a cada postulante.
+              comunicará el resultado al correo electrónico registrado hasta
+              el miércoles 4 de noviembre de 2026.
             </p>
             <label className="consent-check">
               <input
@@ -679,7 +719,8 @@ export default function QuestionnaireApp() {
           ) : (
             <p>
               La información fue registrada correctamente. El equipo comunicará
-              posteriormente el resultado del proceso de selección.
+              el resultado del proceso de selección al correo electrónico
+              registrado hasta el miércoles 4 de noviembre de 2026.
             </p>
           )}
           {submissionId ? (

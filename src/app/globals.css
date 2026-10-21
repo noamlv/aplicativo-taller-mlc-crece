@@ -275,6 +275,40 @@ h3 {
   font-weight: 800;
 }
 
+.mlc-definition {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.mlc-definition h3 {
+  margin-bottom: 8px;
+  color: var(--violet);
+}
+
+.mlc-definition p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.mlc-definition details {
+  margin-top: 10px;
+}
+
+.mlc-definition summary {
+  width: fit-content;
+  color: var(--green);
+  font-size: 0.88rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.mlc-definition details p {
+  margin-top: 10px;
+}
+
 .participant-type-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

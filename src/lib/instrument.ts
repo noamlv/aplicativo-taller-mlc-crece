@@ -33,7 +33,7 @@ export const surveyInstrument: SurveyInstrument = {
           type: "text",
           prompt: "Número de celular",
           helper:
-            "Utilizaremos este número para comunicar el resultado de la selección.",
+            "Podremos comunicarnos con usted si necesitamos precisar algún dato de su postulación.",
           required: true,
           inputMode: "tel",
           maxLength: 9,

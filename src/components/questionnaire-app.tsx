@@ -31,6 +31,7 @@ import type { AnswerValue, Answers, SurveyQuestion } from "@/lib/types";
 const DRAFT_KEY = "crece-taller-mlc-draft-v1";
 const CONTACT_FIELDS = new Set([
   "nombre_completo_social",
+  "dni",
   "numero_celular",
   "correo_electronico",
 ]);
@@ -65,7 +66,7 @@ function QuestionControl({
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
       ) => {
         const nextValue =
-          question.inputMode === "tel"
+          question.inputMode === "tel" || question.inputMode === "numeric"
             ? event.target.value.replace(/\D/g, "").slice(0, question.maxLength)
             : event.target.value;
         onChange(question.id, nextValue);
@@ -85,7 +86,7 @@ function QuestionControl({
   const selectedValues = Array.isArray(value) ? value : [];
   return (
     <div
-      className="option-grid"
+      className={`option-grid ${question.id === "jornadas_disponibles" ? "schedule-options" : ""}`}
       role={isMultiple ? "group" : "radiogroup"}
       aria-describedby={describedBy}
     >
@@ -150,23 +151,11 @@ function Header() {
       <div className="header-copy">
         <p className="eyebrow">PROYECTO CRECE · CONVOCATORIA</p>
         <h1>Taller de Monitoreo Liderado por la Comunidad</h1>
-        <p className="header-lead">
-          Manifestación de interés para líderes y lideresas de organizaciones de
-          base comunitaria de Lima y Callao.
-        </p>
       </div>
       <div
         className="brand-lockup"
-        aria-label="ONUSIDA Perú, Proyecto CRECE, ATTPE y Canadá"
+        aria-label="Proyecto CRECE, ATTPE, ONUSIDA Perú y Canadá"
       >
-        <Image
-          className="onusida-logo"
-          src="/assets/logo-onusida-es-color.png"
-          width={255}
-          height={42}
-          priority
-          alt="ONUSIDA"
-        />
         <Image
           className="crece-logo"
           src="/assets/logo-crece.png"
@@ -182,6 +171,14 @@ function Header() {
           height={600}
           priority
           alt="Asociación de Travestis, Transexuales y Transgéneros del Perú"
+        />
+        <Image
+          className="onusida-logo"
+          src="/assets/logo-onusida-es-color.png"
+          width={255}
+          height={42}
+          priority
+          alt="ONUSIDA"
         />
         <div className="canada-logo-frame">
           <Image
@@ -309,8 +306,8 @@ export default function QuestionnaireApp() {
   async function downloadPdf() {
     await exportCrecePdf({
       title: surveyInstrument.title,
-      subtitle: "Manifestación de interés · Vista previa antes del envío",
-      fileName: "manifestacion-interes-taller-mlc-crece",
+      subtitle: "Solicitud de expresión de interés · Vista previa antes del envío",
+      fileName: "solicitud-expresion-interes-taller-mlc-crece",
       metadata: [
         { label: "Fechas", value: "17 al 21 de noviembre de 2026" },
         {
@@ -326,7 +323,6 @@ export default function QuestionnaireApp() {
           value: "Al correo registrado hasta el 4 de noviembre de 2026",
         },
         { label: "Dirigido a", value: "Organizaciones de Lima y Callao" },
-        { label: "Conectividad", value: "Bono para las sesiones virtuales" },
       ],
       sections: surveyInstrument.sections.map((section) => ({
         title: section.title,
@@ -349,6 +345,7 @@ export default function QuestionnaireApp() {
         preferredName: String(cleaned.nombre_completo_social ?? ""),
         phone: String(cleaned.numero_celular ?? ""),
         email: String(cleaned.correo_electronico ?? ""),
+        dni: cleaned.dni ? String(cleaned.dni) : undefined,
       };
       const analyticalAnswers = Object.fromEntries(
         Object.entries(cleaned).filter(([key]) => !CONTACT_FIELDS.has(key)),
@@ -413,49 +410,25 @@ export default function QuestionnaireApp() {
       <Header />
 
       {view === "intro" ? (
-        <section className="intro-layout" aria-labelledby="intro-title">
+        <section className="intro-layout" aria-label="Información del taller">
           <div className="intro-copy">
-            <p className="section-kicker">
-              Manifestación de interés · 5 a 7 minutos
-            </p>
-            <h2 id="intro-title">
-              Taller teórico-práctico con enfoque de género y derechos
-            </h2>
+            <p className="section-kicker">Solicitud de expresión de interés</p>
             <p>{surveyInstrument.description}</p>
-            <div className="activity-context call-card">
-              <strong>Convocatoria para Lima y Callao</strong>
-              <span>
-                El formulario estará disponible del miércoles 21 de octubre al
-                domingo 1 de noviembre de 2026, hasta las 11:59 p. m.
-              </span>
-              <span>
-                Los resultados se comunicarán al correo electrónico registrado
-                hasta el miércoles 4 de noviembre de 2026.
-              </span>
-              <span>
-                Las personas seleccionadas recibirán un bono de conectividad a
-                internet para participar en las jornadas virtuales.
-              </span>
-            </div>
-            <div className="activity-context schedule-card">
-              <strong>Fechas y horarios</strong>
-              <span>
-                <b>Martes 17:</b> 5:00 a 8:00 p. m. · virtual
-              </span>
-              <span>
-                <b>Miércoles 18:</b> 5:00 a 8:00 p. m. · virtual
-              </span>
-              <span>
-                <b>Jueves 19:</b> 4:00 a 9:00 p. m. · presencial
-              </span>
-              <span>
-                <b>Viernes 20:</b> 4:00 a 9:00 p. m. · presencial
-              </span>
-              <span>
-                <b>Sábado 21:</b> 10:00 a. m. a 7:00 p. m. · presencial
-              </span>
-              <small>Noviembre de 2026</small>
-            </div>
+            <p>
+              Sus respuestas serán utilizadas por el Proyecto CRECE para
+              organizar la participación en el taller. Por restricciones
+              presupuestarias, este taller sólo puede cubrir a 30
+              participantes, por lo que se admitirá una persona por OBC y, si
+              las expresiones de interés superan los 30 cupos, se realizará una
+              selección.
+            </p>
+            <p>
+              El envío del formulario no le asegura la participación en el
+              taller. El equipo evaluará las demandas y comunicará el resultado
+              al correo electrónico registrado hasta el miércoles 4 de
+              noviembre de 2026. A aquellas OBCs no seleccionadas se les harán
+              saber otras opciones metodológicas que implementaremos a futuro.
+            </p>
             <div className="mlc-definition">
               <h3>¿Qué es el MLC?</h3>
               <p>
@@ -486,14 +459,6 @@ export default function QuestionnaireApp() {
           <div className="privacy-panel">
             <ShieldCheck aria-hidden="true" />
             <h3>Participación voluntaria</h3>
-            <p>
-              Sus respuestas serán utilizadas por ONUSIDA Perú y el proyecto
-              CRECE para organizar el taller y, si las postulaciones superan los
-              30 cupos, realizar la selección. Se admitirá una persona por OBC.
-              El envío del formulario no confirma una vacante; el equipo
-              comunicará el resultado al correo electrónico registrado hasta
-              el miércoles 4 de noviembre de 2026.
-            </p>
             <label className="consent-check">
               <input
                 type="checkbox"
@@ -699,7 +664,7 @@ export default function QuestionnaireApp() {
               disabled={submitting}
               onClick={submitSurvey}
             >
-              {submitting ? "Enviando..." : "Enviar postulación"}{" "}
+              {submitting ? "Enviando..." : "Enviar solicitud"}{" "}
               <Check aria-hidden="true" />
             </button>
           </div>

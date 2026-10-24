@@ -1,8 +1,8 @@
 # Taller de Monitoreo Liderado por la Comunidad
 
-Formulario de manifestación de interés para líderes y lideresas de organizaciones de base comunitaria que deseen participar en el Taller de Monitoreo Liderado por la Comunidad del proyecto CRECE.
+Formulario de expresión de interés para integrantes de organizaciones de base comunitaria que deseen participar en el Taller de Monitoreo Liderado por la Comunidad del proyecto CRECE.
 
-La versión `2026-10-v2` registra una candidatura por OBC, experiencia previa, disponibilidad para las cinco jornadas y el plan de aplicación de los aprendizajes. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
+La versión `2026-10-v3` registra una candidatura por OBC, experiencia previa, las jornadas disponibles y el plan de aplicación de los aprendizajes. El DNI es opcional y, cuando se proporciona, se guarda con los datos de contacto. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
 
 ## Desarrollo local
 

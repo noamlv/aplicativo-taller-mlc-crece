@@ -6,7 +6,7 @@ Esta pauta orienta la revisión de postulaciones cuando el número de personas i
 
 - La persona representa a una organización de base comunitaria.
 - La OBC manifiesta interés en recibir capacitación sobre MLC.
-- La persona declara disponibilidad para las cinco jornadas.
+- La persona marca las jornadas a las que puede asistir; para participar en el taller completo se requiere disponibilidad en las cinco.
 - Se presenta una sola candidatura por OBC. Si se reciben varias, debe solicitarse a la organización que confirme cuál mantiene.
 
 ## Criterios de priorización
@@ -21,6 +21,7 @@ Esta pauta orienta la revisión de postulaciones cuando el número de personas i
 
 - Los ajustes de accesibilidad solicitados.
 - El nombre o nombre social de la persona.
+- El número de DNI, si se proporcionó.
 - El número de celular o el correo electrónico.
 
 Estas variables se utilizan únicamente para identificación, contacto y organización de condiciones adecuadas de participación.

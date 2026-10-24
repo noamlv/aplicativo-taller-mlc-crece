@@ -15,7 +15,7 @@ export type SurveyQuestion = {
   placeholder?: string;
   required: boolean;
   options?: SurveyOption[];
-  inputMode?: "text" | "email" | "tel";
+  inputMode?: "text" | "email" | "tel" | "numeric";
   maxLength?: number;
   validate?: (value: AnswerValue) => string | null;
   showWhen?: (answers: Answers) => boolean;

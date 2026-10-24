@@ -13,6 +13,7 @@ const contactSchema = z
     preferredName: z.string().trim().min(1).max(200),
     phone: z.string().regex(/^9\d{8}$/),
     email: z.string().email().max(254),
+    dni: z.string().regex(/^\d{8}$/).optional(),
   })
   .strict();
 

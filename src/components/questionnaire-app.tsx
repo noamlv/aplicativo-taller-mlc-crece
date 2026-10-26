@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { surveyInstrument } from "@/lib/instrument";
+import { surveyInstrument, workshopSessions } from "@/lib/instrument";
 import { exportCrecePdf } from "@/lib/export-review-pdf";
 import {
   answerForDisplay,
@@ -572,6 +572,13 @@ export default function QuestionnaireApp() {
                           ) : null}
                         </label>
                         {question.helper ? <p>{question.helper}</p> : null}
+                        {question.id === "disponibilidad_cinco_jornadas" ? (
+                          <ul className="session-schedule" aria-label="Jornadas del taller">
+                            {workshopSessions.map((session) => (
+                              <li key={session.value}>{session.label}</li>
+                            ))}
+                          </ul>
+                        ) : null}
                       </div>
                     </div>
                     <QuestionControl

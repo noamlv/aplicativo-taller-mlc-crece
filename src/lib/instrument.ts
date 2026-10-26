@@ -5,6 +5,14 @@ const yesNo: SurveyOption[] = [
   { value: "No", label: "No" },
 ];
 
+export const workshopSessions: SurveyOption[] = [
+  { value: "Martes 17: 5:00 a 8:00 p. m. - virtual", label: "Martes 17: 5:00 a 8:00 p. m. - virtual" },
+  { value: "Miércoles 18: 5:00 a 8:00 p. m. - virtual", label: "Miércoles 18: 5:00 a 8:00 p. m. - virtual" },
+  { value: "Jueves 19: 4:00 a 9:00 p. m. - presencial", label: "Jueves 19: 4:00 a 9:00 p. m. - presencial" },
+  { value: "Viernes 20: 4:00 a 9:00 p. m. - presencial", label: "Viernes 20: 4:00 a 9:00 p. m. - presencial" },
+  { value: "Sábado 21: 10:00 a. m. a 7:00 p. m. - presencial", label: "Sábado 21: 10:00 a. m. a 7:00 p. m. - presencial" },
+];
+
 export const surveyInstrument: SurveyInstrument = {
   id: "crece-taller-mlc-interes",
   version: "2026-10-v5",
@@ -210,6 +218,7 @@ export const surveyInstrument: SurveyInstrument = {
           id: "disponibilidad_cinco_jornadas",
           type: "single",
           prompt: "¿Puede asistir a todas las jornadas del taller?",
+          helper: "Fechas y horarios del taller (noviembre de 2026):",
           required: true,
           options: yesNo,
         },
@@ -220,28 +229,7 @@ export const surveyInstrument: SurveyInstrument = {
           helper: "Puede marcar más de una opción. Todas las fechas corresponden a noviembre de 2026.",
           required: true,
           showWhen: (answers) => answers.disponibilidad_cinco_jornadas === "No",
-          options: [
-            {
-              value: "Martes 17: 5:00 a 8:00 p. m. - virtual",
-              label: "Martes 17: 5:00 a 8:00 p. m. - virtual",
-            },
-            {
-              value: "Miércoles 18: 5:00 a 8:00 p. m. - virtual",
-              label: "Miércoles 18: 5:00 a 8:00 p. m. - virtual",
-            },
-            {
-              value: "Jueves 19: 4:00 a 9:00 p. m. - presencial",
-              label: "Jueves 19: 4:00 a 9:00 p. m. - presencial",
-            },
-            {
-              value: "Viernes 20: 4:00 a 9:00 p. m. - presencial",
-              label: "Viernes 20: 4:00 a 9:00 p. m. - presencial",
-            },
-            {
-              value: "Sábado 21: 10:00 a. m. a 7:00 p. m. - presencial",
-              label: "Sábado 21: 10:00 a. m. a 7:00 p. m. - presencial",
-            },
-          ],
+          options: workshopSessions,
         },
         {
           id: "plan_accion_seis_meses",

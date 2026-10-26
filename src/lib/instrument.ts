@@ -7,10 +7,10 @@ const yesNo: SurveyOption[] = [
 
 export const surveyInstrument: SurveyInstrument = {
   id: "crece-taller-mlc-interes",
-  version: "2026-10-v3",
+  version: "2026-10-v4",
   title: "Taller de Monitoreo Liderado por la Comunidad",
   description:
-    "Este es un formulario para evaluar el interés en participar en un taller teórico-práctico de MLC con enfoque de género y derechos, que se llevará a cabo entre el 17 y el 21 de noviembre. El formulario le tomará entre 5 y 7 minutos y estará activo hasta el domingo 1 de noviembre a las 11:59 p. m.",
+    "Este es un formulario para evaluar el interés en participar en un taller teórico-práctico de MLC con enfoque de género y derechos, que se llevará a cabo entre el 17 y el 21 de noviembre en Lima. El formulario le tomará entre 5 y 7 minutos y estará activo hasta el domingo 1 de noviembre a las 11:59 p. m.",
   confirmation: "Su solicitud de expresión de interés fue registrada",
   sections: [
     {
@@ -204,34 +204,42 @@ export const surveyInstrument: SurveyInstrument = {
       title: "Disponibilidad y aplicación",
       shortTitle: "Disponibilidad",
       description:
-        "El taller combina sesiones virtuales y presenciales. Indique las jornadas a las que puede asistir.",
+        "El taller combina sesiones virtuales y presenciales. Confirme su disponibilidad para las cinco jornadas.",
       questions: [
+        {
+          id: "disponibilidad_cinco_jornadas",
+          type: "single",
+          prompt: "¿Puede asistir a todas las jornadas del taller?",
+          required: true,
+          options: yesNo,
+        },
         {
           id: "jornadas_disponibles",
           type: "multiple",
           prompt: "¿A cuáles jornadas del taller puede asistir?",
           helper: "Puede marcar más de una opción. Todas las fechas corresponden a noviembre de 2026.",
           required: true,
+          showWhen: (answers) => answers.disponibilidad_cinco_jornadas === "No",
           options: [
             {
-              value: "Martes 17: 5:00 a 8:00 p. m. · virtual",
-              label: "Martes 17: 5:00 a 8:00 p. m. · virtual",
+              value: "Martes 17: 5:00 a 8:00 p. m. - virtual",
+              label: "Martes 17: 5:00 a 8:00 p. m. - virtual",
             },
             {
-              value: "Miércoles 18: 5:00 a 8:00 p. m. · virtual",
-              label: "Miércoles 18: 5:00 a 8:00 p. m. · virtual",
+              value: "Miércoles 18: 5:00 a 8:00 p. m. - virtual",
+              label: "Miércoles 18: 5:00 a 8:00 p. m. - virtual",
             },
             {
-              value: "Jueves 19: 4:00 a 9:00 p. m. · presencial",
-              label: "Jueves 19: 4:00 a 9:00 p. m. · presencial",
+              value: "Jueves 19: 4:00 a 9:00 p. m. - presencial",
+              label: "Jueves 19: 4:00 a 9:00 p. m. - presencial",
             },
             {
-              value: "Viernes 20: 4:00 a 9:00 p. m. · presencial",
-              label: "Viernes 20: 4:00 a 9:00 p. m. · presencial",
+              value: "Viernes 20: 4:00 a 9:00 p. m. - presencial",
+              label: "Viernes 20: 4:00 a 9:00 p. m. - presencial",
             },
             {
-              value: "Sábado 21: 10:00 a. m. a 7:00 p. m. · presencial",
-              label: "Sábado 21: 10:00 a. m. a 7:00 p. m. · presencial",
+              value: "Sábado 21: 10:00 a. m. a 7:00 p. m. - presencial",
+              label: "Sábado 21: 10:00 a. m. a 7:00 p. m. - presencial",
             },
           ],
         },

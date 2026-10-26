@@ -2,7 +2,7 @@
 
 Formulario de expresión de interés para integrantes de organizaciones de base comunitaria que deseen participar en el Taller de Monitoreo Liderado por la Comunidad del proyecto CRECE.
 
-La versión `2026-10-v3` registra una candidatura por OBC, experiencia previa, las jornadas disponibles y el plan de aplicación de los aprendizajes. El DNI es opcional y, cuando se proporciona, se guarda con los datos de contacto. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
+La versión `2026-10-v4` registra una candidatura por OBC, experiencia previa, disponibilidad para las cinco jornadas y, si no puede asistir a todas, las jornadas disponibles. También recoge el plan de aplicación de los aprendizajes. El DNI es opcional y, cuando se proporciona, se guarda con los datos de contacto. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
 
 ## Desarrollo local
 

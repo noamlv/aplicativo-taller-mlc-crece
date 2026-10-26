@@ -234,7 +234,19 @@ export default function QuestionnaireApp() {
           sectionIndex?: number;
           consented?: boolean;
         };
-        if (draft.answers) setAnswers(draft.answers);
+        if (draft.answers) {
+          const savedJornadas = draft.answers.jornadas_disponibles;
+          setAnswers({
+            ...draft.answers,
+            ...(Array.isArray(savedJornadas)
+              ? {
+                  jornadas_disponibles: savedJornadas.map((jornada) =>
+                    jornada.replace(" · ", " - "),
+                  ),
+                }
+              : {}),
+          });
+        }
         if (typeof draft.sectionIndex === "number") {
           setSectionIndex(
             Math.min(draft.sectionIndex, surveyInstrument.sections.length - 1),

@@ -328,7 +328,7 @@ export default function QuestionnaireApp() {
         },
         {
           label: "Convocatoria",
-          value: "21 de octubre al 1 de noviembre de 2026, 11:59 p. m.",
+          value: "21 de octubre al lunes 2 de noviembre de 2026, 4:00 p. m.",
         },
         {
           label: "Resultados",

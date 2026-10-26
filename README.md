@@ -2,7 +2,7 @@
 
 Formulario de expresión de interés para integrantes de organizaciones de base comunitaria que deseen participar en el Taller de Monitoreo Liderado por la Comunidad del proyecto CRECE.
 
-La versión `2026-10-v4` registra una candidatura por OBC, experiencia previa, disponibilidad para las cinco jornadas y, si no puede asistir a todas, las jornadas disponibles. También recoge el plan de aplicación de los aprendizajes. El DNI es opcional y, cuando se proporciona, se guarda con los datos de contacto. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
+La versión `2026-10-v5` registra una candidatura por OBC, experiencia previa, disponibilidad para las cinco jornadas y, si no puede asistir a todas, las jornadas disponibles. También recoge el plan de aplicación de los aprendizajes. El DNI es opcional y, cuando se proporciona, se guarda con los datos de contacto. Incluye vista previa, descarga en PDF y guardado persistente del borrador en el navegador.
 
 ## Desarrollo local
 
@@ -15,7 +15,7 @@ Sin variables de entorno, la aplicación funciona en modo de demostración y no 
 
 ## Fechas del taller
 
-- Convocatoria: 21 de octubre al 1 de noviembre de 2026, hasta las 11:59 p. m.
+- Convocatoria: 21 de octubre al lunes 2 de noviembre de 2026, hasta las 4:00 p. m.
 - Comunicación de resultados al correo registrado: hasta el 4 de noviembre de 2026.
 - 17 y 18 de noviembre de 2026: sesiones virtuales.
 - 19, 20 y 21 de noviembre de 2026: sesiones presenciales.

@@ -7,10 +7,10 @@ const yesNo: SurveyOption[] = [
 
 export const surveyInstrument: SurveyInstrument = {
   id: "crece-taller-mlc-interes",
-  version: "2026-10-v4",
+  version: "2026-10-v5",
   title: "Taller de Monitoreo Liderado por la Comunidad",
   description:
-    "Este es un formulario para evaluar el interés en participar en un taller teórico-práctico de MLC con enfoque de género y derechos, que se llevará a cabo entre el 17 y el 21 de noviembre en Lima. El formulario le tomará entre 5 y 7 minutos y estará activo hasta el domingo 1 de noviembre a las 11:59 p. m.",
+    "Este es un formulario para evaluar el interés en participar en un taller teórico-práctico de MLC con enfoque de género y derechos, que se llevará a cabo entre el 17 y el 21 de noviembre en Lima. El formulario le tomará entre 5 y 7 minutos y estará activo hasta el lunes 2 de noviembre a las 4:00 p. m.",
   confirmation: "Su solicitud de expresión de interés fue registrada",
   sections: [
     {
